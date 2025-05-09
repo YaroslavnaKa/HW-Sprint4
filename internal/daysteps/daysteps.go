@@ -53,7 +53,7 @@ func DayActionInfo(data string, weight, height float64) string {
 		return ""
 	}
 
-	distKm := float64(steps) * stepLength / float64(mInKm)
+	distKm := float64(steps) * stepLength / mInKm
 	calories, err := spentcalories.WalkingSpentCalories(steps, weight, height, duration)
 	if err != nil {
 		fmt.Println("Ошибка расчета калорий:", err)

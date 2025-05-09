@@ -43,9 +43,9 @@ func parseTraining(data string) (int, string, time.Duration, error) {
 }
 
 func distance(steps int, height float64) float64 {
-	LonSt := height * stepLengthCoefficient
-	Dist := LonSt * float64(steps) / mInKm
-	return Dist
+	lonSt := height * stepLengthCoefficient
+	dist := lonSt * float64(steps) / mInKm
+	return dist
 }
 
 func meanSpeed(steps int, height float64, duration time.Duration) float64 {
@@ -138,6 +138,6 @@ func WalkingSpentCalories(steps int, weight, height float64, duration time.Durat
 	meanSpeedValue := meanSpeed(steps, height, duration)
 	durationInMinutes := duration.Minutes()
 	baseCalories := (weight * meanSpeedValue * durationInMinutes) / minInH
-	CallorValue := baseCalories * walkingCaloriesCoefficient
-	return CallorValue, nil
+	callorValue := baseCalories * walkingCaloriesCoefficient
+	return callorValue, nil
 }
