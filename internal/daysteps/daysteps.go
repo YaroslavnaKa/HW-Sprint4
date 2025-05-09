@@ -21,24 +21,24 @@ func parsePackage(data string) (int, time.Duration, error) {
 	if len(words) != 2 {
 		return 0, 0, fmt.Errorf("invalid data format: expected 2 parts separated by comma, got %d", len(words))
 	}
-	Step, err := strconv.Atoi(words[0])
+	step, err := strconv.Atoi(words[0])
 	if err != nil {
-		return 0, 0, fmt.Errorf("invalid steps value %d:%w", Step, err)
+		return 0, 0, fmt.Errorf("invalid steps value %d:%w", step, err)
 	}
-	if Step <= 0 {
-		return 0, 0, fmt.Errorf("invalid steps value '%d':%w", Step, err)
+	if step <= 0 {
+		return 0, 0, fmt.Errorf("invalid steps value '%d':%w", step, err)
 	}
 
-	Minutes, err := time.ParseDuration(words[1])
+	duration, err := time.ParseDuration(words[1])
 	if err != nil {
 		return 0, 0, fmt.Errorf("converting string to duration: %w", err)
 
 	}
-	if Minutes <= 0 {
-		return 0, 0, fmt.Errorf("invalid minutes value '%d':%w", Minutes, err)
+	if duration <= 0 {
+		return 0, 0, fmt.Errorf("invalid minutes value '%d':%w", duration, err)
 
 	}
-	return Step, Minutes, nil
+	return step, duration, nil
 
 }
 

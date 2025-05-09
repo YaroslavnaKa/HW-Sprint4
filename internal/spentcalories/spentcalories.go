@@ -23,23 +23,23 @@ func parseTraining(data string) (int, string, time.Duration, error) {
 	if len(words) != 3 {
 		return 0, "", 0, fmt.Errorf("invalid data format: expected 3 parts, got %d", len(words))
 	}
-	Step, err := strconv.Atoi(words[0])
+	step, err := strconv.Atoi(words[0])
 	if err != nil {
-		return 0, "", 0, fmt.Errorf("convertation steps to int is faild '%d':%w", Step, err)
+		return 0, "", 0, fmt.Errorf("convertation steps to int is faild '%d':%w", step, err)
 	}
-	if Step <= 0 {
-		return 0, "", 0, fmt.Errorf("invalid steps value '%d':%w", Step, err)
+	if step <= 0 {
+		return 0, "", 0, fmt.Errorf("invalid steps value '%d':%w", step, err)
 	}
 
-	Minutes, err := time.ParseDuration(words[2])
+	duration, err := time.ParseDuration(words[2])
 	if err != nil {
-		return 0, "", 0, fmt.Errorf("convertation minutes to int is faild '%d':%w", Step, err)
+		return 0, "", 0, fmt.Errorf("convertation minutes to int is faild '%d':%w", step, err)
 	}
-	if Minutes <= 0 {
+	if duration <= 0 {
 		return 0, "", 0, errors.New("invalid data format: minutes is zero")
 	}
 
-	return Step, words[1], Minutes, nil
+	return step, words[1], duration, nil
 }
 
 func distance(steps int, height float64) float64 {
